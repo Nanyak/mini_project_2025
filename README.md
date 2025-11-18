@@ -274,3 +274,5 @@ docker exec mini-project-api-1 /root/.local/bin/uv run alembic upgrade head
 # Thay đổi port trong docker-compose.yml
 # Ví dụ: "8001:8000" thay vì "8000:8000"
 ```
+### References:
+https://dev.to/mohammad222pr/structuring-a-fastapi-project-best-practices-53l6
