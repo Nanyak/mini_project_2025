@@ -1,0 +1,29 @@
+[project]
+name = "api"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "alembic>=1.17.2",
+    "fastapi>=0.121.2",
+    "psycopg[binary]",
+    "pydantic>=2.12.4",
+    "sqlalchemy>=2.0.44",
+    "uvicorn>=0.38.0",
+    "pytest>=8.3.4",
+    "httpx>=0.28.1",
+]
+
+[tool.ruff]
+line-length = 88
+target-version = "py314"
+extend-exclude = ["alembic"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W", "UP"]
+ignore = []
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
