@@ -1,7 +1,7 @@
 """create user table
 
 Revision ID: ead6e22fa456
-Revises: 
+Revises:
 Create Date: 2025-11-18 04:40:32.193386
 
 """
