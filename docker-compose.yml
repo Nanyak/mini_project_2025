@@ -16,6 +16,7 @@ services:
     working_dir: /var/task
     ports:
       - "8000:8000"
+    user: "${COMPOSE_UID:-1000}:${COMPOSE_GID:-1000}"
     environment:
     - DB_USER=postgres
     - DB_PASSWORD=postgres
