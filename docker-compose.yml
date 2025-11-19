@@ -1,34 +1,31 @@
 services:
   web:
-    container_name: web
     build: ./web
+    working_dir: /src/web
     volumes:
-      - ./web:/app:cached
-      - /app/node_modules
+      - ./web:/src/web
     ports:
       - "5173:5173"
+    # user: "1000"
+    user: "${COMPOSE_UID:-1000}:${COMPOSE_GID:-1000}"
     command: ["npm", "run", "dev"]
   api:
-    container_name: api
     build: ./api
     volumes:
       - ./api:/var/task
     working_dir: /var/task
     ports:
       - "8000:8000"
-    depends_on:
-      - db
     environment:
-      - UV_LINK_MODE=copy
-      - PYTHONPATH=/var/task
-    command:
-      [
-        "bash",
-        "-c",
-        "/root/.local/bin/uv run uvicorn main:app --host 0.0.0.0 --port 8000",
-      ]
-  db:
-    container_name: db
+    - DB_USER=postgres
+    - DB_PASSWORD=postgres
+    - DB_HOST=postgres
+    - DB_PORT=5432
+    - DB_NAME=mini_project
+    entrypoint: ["uv", "run"]
+    command: ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+
+  postgres:
     image: postgres
     volumes:
       - postgres_data:/var/lib/postgresql
@@ -47,11 +44,10 @@ services:
     ports:
       - "5000:80"
     depends_on:
-      - db
+      - postgres
     logging:
       driver: none
   nginx:
-    container_name: nginx
     image: nginx
     ports:
       - "80:80"
