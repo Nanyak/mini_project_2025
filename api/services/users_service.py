@@ -8,8 +8,8 @@ class UserService:
     def __init__(self, db: Session):
         self.db = db
 
-    def create_user(self, user: UserCreateSchema):
-        db_user = User(username=user.username, password=user.password, email=user.email)
+    def create(self, user: UserCreateSchema):
+        db_user = User(**user.model_dump())
         self.db.add(db_user)
         self.db.commit()
         self.db.refresh(db_user)

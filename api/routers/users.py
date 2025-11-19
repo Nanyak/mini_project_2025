@@ -12,6 +12,6 @@ router = APIRouter(prefix="/users", tags=["users"])
 def create_new_user(user: UserCreateSchema, db: Session = Depends(get_db)):
     user_service = UserService(db)
 
-    new_user = user_service.create_user(user)
+    new_user = user_service.create(user)
 
     return new_user

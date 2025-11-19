@@ -140,6 +140,7 @@ pre-commit run --all-files
 │   │   └── users_service.py
 │   ├── dependencies.py       # Dependency injection
 │   ├── main.py               # FastAPI app
+│   ├── config.py             # env config
 │   ├── alembic.ini           # Alembic config
 │   ├── pyproject.toml        # Dependencies
 │   └── Dockerfile
